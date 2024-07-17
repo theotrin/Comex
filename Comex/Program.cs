@@ -1,5 +1,5 @@
 ﻿string greetings = "Bem vindo ao Comex!\n";
-List<string> produtos = new List<string>(); 
+List<Produto> produtos = new List<Produto>(); 
 
 void ExibirMenu()
 {
@@ -16,15 +16,16 @@ void ExibirMenu()
     Console.WriteLine("2 Listar Produtos");
     Console.WriteLine("0 Encerrar o programa");
     Console.Write("\nEscolha uma opção: ");
-    int opcao = int.Parse(Console.ReadLine()!);
+    string opcao = Console.ReadLine();
+    Console.WriteLine(opcao);
 
     switch (opcao)
     {
-        case 1: CadastrarProduto();
+        case "1": CadastrarProduto();
             break;
-        case 2: ListarProdutos();
+        case "2": ListarProdutos();
             break; 
-        case 0: Console.WriteLine("\nPrograma feito por: Theo Trindade :D, thau thau");
+        case "0": Console.WriteLine("\nPrograma feito por: Theo Trindade :D, thau thau");
             break;
         default: 
             Console.WriteLine("Opção inválida! tente novamente");
@@ -51,14 +52,58 @@ void CadastrarProduto()
     ExibirTituloDaOpcao("Cadastrar novo produto");
 
     Console.Write("\nDigite o nome do novo produto: ");
-    string novoProduto = Console.ReadLine()!;
-    Console.WriteLine($"\nO produto: {novoProduto} cadastrado com sucesso!");
-    produtos.Add(novoProduto);
+    string nome = Console.ReadLine()!;
 
-    Console.WriteLine("Aperte qualquer tecla para voltar ao menu principal...");
-    Console.ReadKey();
-    Console.Clear();
-    ExibirMenu();
+    Console.Write("\nDigite a descrição do novo produto: ");
+    string descricao = Console.ReadLine()!;
+
+    Console.Write("\nDigite o preço unitario do novo produto: ");
+    double preco = double.Parse(Console.ReadLine()!);
+
+    Console.Write("\nDigite a quantidade de estoque disponivel do produto: ");
+    int quantidadeEstoque = Console.Read()!;
+
+    if(nome == "" || nome.Length < 1)
+    {
+        Console.WriteLine("Digite um nome válido para o produto\n");
+        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
+        Console.ReadKey();
+        ExibirMenu();
+    }
+
+    if (descricao == "" || descricao.Length < 1)
+    {
+        Console.WriteLine("Digite uma descrição válida para o produto\n");
+        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
+        Console.ReadKey();
+        ExibirMenu();
+    }
+
+    if(preco < 1)
+    {
+        Console.WriteLine("Digite um preço válido ou maior que 0 para o produto\n");
+        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
+        Console.ReadKey();
+        ExibirMenu();
+    }
+
+    if (quantidadeEstoque < 1)
+    {
+        Console.WriteLine("A quantidade disponivel para o produto precisa ser maior que 1\n");
+        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
+        Console.ReadKey();
+        ExibirMenu();
+    }
+
+    Produto produto = new Produto(nome, descricao, preco, quantidadeEstoque);
+
+    produtos.Add(produto);
+
+    Console.WriteLine("\nProduto adcionado com sucesso!");
+
+    produto.DeatalharProduto();
+
+    EncerrarJanela();
 }
 
 void ListarProdutos()
@@ -68,14 +113,25 @@ void ListarProdutos()
 
     foreach (var produto in produtos)
     {
-        Console.WriteLine(produto.ToString());
+        Console.WriteLine(produto.Nome);
     }
 
+    EncerrarJanela();
+}
+
+void EncerrarJanela()
+{
+    Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("\nAperte qualquer tecla para voltar ao menu principal...");
-    Console.ReadKey();
+    Console.ForegroundColor = ConsoleColor.White;
+    ConsoleKeyInfo key = Console.ReadKey();
     Console.Clear();
     ExibirMenu();
 }
 
 ExibirMenu();
 
+
+
+//Console.WriteLine($"Nome: {produto1.Nome} ");
+Endereco endereco01 = new Endereco("Jardim Adriana","Manaus", "Quadra 4", "Amazonas", "Jõao Braga", 16);
