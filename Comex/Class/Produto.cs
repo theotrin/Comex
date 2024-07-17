@@ -8,9 +8,6 @@
     public Produto(string nome, string descricao, double precoUnitario, int quantidade)
     {
         Nome = nome;
-        Descricao = descricao;
-        PrecoUnitario = precoUnitario;
-        Quantidade = quantidade;
     }
 
     public string Nome { get; }
