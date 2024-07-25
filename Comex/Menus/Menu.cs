@@ -22,9 +22,9 @@ namespace Comex.Menus
 
        public void EncerrarJanela()
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("\nAperte qualquer tecla para voltar ao menu principal...");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Gray;
             ConsoleKeyInfo key = Console.ReadKey();
             Console.Clear();
         }

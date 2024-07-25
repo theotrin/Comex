@@ -2,7 +2,10 @@
 using Comex.Model.Produto;
 
 string greetings = "Bem vindo ao Comex!\n";
-Dictionary<string, Produto> produtos = new ();
+Dictionary<string, Produto> produtos = new();
+produtos.Add("Café", new Produto("Café",4.0,50));
+produtos.Add("Leite", new Produto("Leite",8.0,30));
+produtos.Add("Banana", new Produto("Banana", 2.0, 20));
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuCadastrarProduto());
@@ -48,10 +51,4 @@ void ExibirMenu()
     }
 }
 
-//ExibirMenu();
-
-Livro coraline = new Livro("Coraline", "XXT66");
-
-Console.WriteLine(coraline.Identificar);
-
-//Endereco endereco01 = new Endereco("Jardim Adriana","Manaus", "Quadra 4", "Amazonas", "Jõao Braga", 16);
+ExibirMenu();
