@@ -1,5 +1,14 @@
-﻿string greetings = "Bem vindo ao Comex!\n";
-List<Produto> produtos = new List<Produto>(); 
+﻿using Comex.Menus;
+using Comex.Model.Produto;
+
+string greetings = "Bem vindo ao Comex!\n";
+Dictionary<string, Produto> produtos = new ();
+
+Dictionary<int, Menu> opcoes = new();
+opcoes.Add(1, new MenuCadastrarProduto());
+opcoes.Add(2, new MenuListarProdutos());
+opcoes.Add(0, new MenuEncerrar());
+
 
 void ExibirMenu()
 {
@@ -16,122 +25,33 @@ void ExibirMenu()
     Console.WriteLine("2 Listar Produtos");
     Console.WriteLine("0 Encerrar o programa");
     Console.Write("\nEscolha uma opção: ");
-    string opcao = Console.ReadLine();
-    Console.WriteLine(opcao);
 
-    switch (opcao)
+    string opcaoEscolhida = Console.ReadLine()!;
+    int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
+
+    if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
     {
-        case "1": CadastrarProduto();
-            break;
-        case "2": ListarProdutos();
-            break; 
-        case "0": Console.WriteLine("\nPrograma feito por: Theo Trindade :D, thau thau");
-            break;
-        default: 
-            Console.WriteLine("Opção inválida! tente novamente");
-            Thread.Sleep(3000);
-            Console.Clear();
-            ExibirMenu();
-            break;
+        Menu menu = opcoes[opcaoEscolhidaNumerica];
+        menu.Executar(produtos);
 
-    }
-}
-void ExibirTituloDaOpcao(string titulo)
-{
-    int quantidadeDeLetras = titulo.Length;
-    string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
+        if(opcaoEscolhidaNumerica == 0) return;
 
-    Console.WriteLine(asteriscos);
-    Console.WriteLine(titulo);
-    Console.WriteLine(asteriscos + "\n");
-}
-
-void CadastrarProduto()
-{
-    Console.Clear();
-    ExibirTituloDaOpcao("Cadastrar novo produto");
-
-    Console.Write("\nDigite o nome do novo produto: ");
-    string nome = Console.ReadLine()!;
-
-    Console.Write("\nDigite a descrição do novo produto: ");
-    string descricao = Console.ReadLine()!;
-
-    Console.Write("\nDigite o preço unitario do novo produto: ");
-    double preco = double.Parse(Console.ReadLine()!);
-
-    Console.Write("\nDigite a quantidade de estoque disponivel do produto: ");
-    int quantidadeEstoque = Console.Read()!;
-
-    if(nome == "" || nome.Length < 1)
-    {
-        Console.WriteLine("Digite um nome válido para o produto\n");
-        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
-        Console.ReadKey();
         ExibirMenu();
     }
-
-    if (descricao == "" || descricao.Length < 1)
+    else
     {
-        Console.WriteLine("Digite uma descrição válida para o produto\n");
-        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
-        Console.ReadKey();
+        Console.WriteLine("\nOpção inválida");
+        Console.WriteLine("Voltando ao menu principal...");
+        Thread.Sleep(2000);
+        Console.Clear();
         ExibirMenu();
     }
-
-    if(preco < 1)
-    {
-        Console.WriteLine("Digite um preço válido ou maior que 0 para o produto\n");
-        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
-        Console.ReadKey();
-        ExibirMenu();
-    }
-
-    if (quantidadeEstoque < 1)
-    {
-        Console.WriteLine("A quantidade disponivel para o produto precisa ser maior que 1\n");
-        Console.WriteLine("Aperte qualquer tecla para voltar ao menu inicial...");
-        Console.ReadKey();
-        ExibirMenu();
-    }
-
-    Produto produto = new Produto(nome, descricao, preco, quantidadeEstoque);
-
-    produtos.Add(produto);
-
-    Console.WriteLine("\nProduto adcionado com sucesso!");
-
-    produto.DeatalharProduto();
-
-    EncerrarJanela();
 }
 
-void ListarProdutos()
-{
-    Console.Clear();
-    ExibirTituloDaOpcao("Lista de produtos cadastados");
+//ExibirMenu();
 
-    foreach (var produto in produtos)
-    {
-        Console.WriteLine(produto.Nome);
-    }
+Livro coraline = new Livro("Coraline", "XXT66");
 
-    EncerrarJanela();
-}
+Console.WriteLine(coraline.Identificar);
 
-void EncerrarJanela()
-{
-    Console.ForegroundColor = ConsoleColor.Magenta;
-    Console.WriteLine("\nAperte qualquer tecla para voltar ao menu principal...");
-    Console.ForegroundColor = ConsoleColor.White;
-    ConsoleKeyInfo key = Console.ReadKey();
-    Console.Clear();
-    ExibirMenu();
-}
-
-ExibirMenu();
-
-
-
-//Console.WriteLine($"Nome: {produto1.Nome} ");
-Endereco endereco01 = new Endereco("Jardim Adriana","Manaus", "Quadra 4", "Amazonas", "Jõao Braga", 16);
+//Endereco endereco01 = new Endereco("Jardim Adriana","Manaus", "Quadra 4", "Amazonas", "Jõao Braga", 16);

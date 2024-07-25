@@ -1,4 +1,6 @@
-﻿class Cliente
+﻿using Comex.Interface;
+
+class Cliente : IIdenficavel
 {
     public Cliente(string nome, string cpf, string email, string telefone, Endereco endereco)
     {
@@ -23,5 +25,10 @@
         Console.WriteLine($"Nome: {Nome}.\nCPF: {Cpf}.\nEmail: {Email}.\n" +
             $"Profissão: {Profissao}.\nTelefone: {Telefone}.\n");
         Endereco.MostrarEndereco();
+    }
+
+    public string Identificar()
+    {
+        return Nome + Cpf;
     }
 }
