@@ -1,16 +1,18 @@
 ﻿using Comex.Menus;
 using Comex.Model.Produto;
 
+
 string greetings = "Bem vindo ao Comex!\n";
 Dictionary<string, Produto> produtos = new ();
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuCadastrarProduto());
 opcoes.Add(2, new MenuListarProdutos());
+opcoes.Add(3, new MenuConsultarApi());
 opcoes.Add(0, new MenuEncerrar());
 
 
-void ExibirMenu()
+async void ExibirMenu()
 {
     Console.WriteLine(@"
 ░█████╗░░█████╗░███╗░░░███╗███████╗██╗░░██╗
@@ -23,6 +25,7 @@ void ExibirMenu()
 
     Console.WriteLine("1 Criar Produto");
     Console.WriteLine("2 Listar Produtos");
+    Console.WriteLine("3 Consultar API");
     Console.WriteLine("0 Encerrar o programa");
     Console.Write("\nEscolha uma opção: ");
 
@@ -48,10 +51,11 @@ void ExibirMenu()
     }
 }
 
-//ExibirMenu();
+ExibirMenu();
 
 Livro coraline = new Livro("Coraline", "XXT66");
 
-Console.WriteLine(coraline.Identificar);
+
+
 
 //Endereco endereco01 = new Endereco("Jardim Adriana","Manaus", "Quadra 4", "Amazonas", "Jõao Braga", 16);

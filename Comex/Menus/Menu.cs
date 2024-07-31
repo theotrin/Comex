@@ -25,7 +25,7 @@ namespace Comex.Menus
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("\nAperte qualquer tecla para voltar ao menu principal...");
             Console.ForegroundColor = ConsoleColor.White;
-            ConsoleKeyInfo key = Console.ReadKey();
+            Console.ReadKey();
             Console.Clear();
         }
     }

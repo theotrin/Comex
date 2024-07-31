@@ -1,4 +1,7 @@
-﻿namespace Comex.Model.Produto;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace Comex.Model.Produto;
 internal class Produto
 {
     public Produto(string nome)
@@ -15,18 +18,26 @@ internal class Produto
         Nome = nome;
         Descricao = descricao;
         PrecoUnitario = precoUnitario;
-        Quantidade = quantidade;
+        //Quantidade = Rating.Count;
     }
 
-    public string Nome { get; protected set; }
+    [JsonPropertyName("title")]
+    public string Nome { get; set; }
+    [JsonPropertyName("description")]
     public string Descricao { get; set; }
+    [JsonPropertyName("price")]
     public double PrecoUnitario { get; set; }
-    public int Quantidade { get; set; }
+    [JsonPropertyName("rating")]
+    public Rating Rating { get; set; }
+    [JsonIgnore]
+    public int Quantidade => Rating?.Count ?? 0;
 
     public void DetalharProduto()
     {
         Console.WriteLine("Detalhes do produto:\n");
-        Console.WriteLine($"Nome: {Nome}\nDescrição: {Descricao}\n" +
-            $"Preço: R${PrecoUnitario}\nQuantidade em estoque: {Quantidade}");
+        Console.WriteLine($"Nome: {Nome}" +
+            $"\nDescrição: {Descricao}" +
+            $"\nPreço: R${PrecoUnitario}" +
+            $"\nQuantidade em estoque: {Quantidade}");
     }
 }
