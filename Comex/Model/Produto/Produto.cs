@@ -34,10 +34,9 @@ internal class Produto
 
     public void DetalharProduto()
     {
-        Console.WriteLine("Detalhes do produto:\n");
         Console.WriteLine($"Nome: {Nome}" +
             $"\nDescrição: {Descricao}" +
             $"\nPreço: R${PrecoUnitario}" +
-            $"\nQuantidade em estoque: {Quantidade}");
+            $"\nQuantidade em estoque: {Quantidade}\n");
     }
 }

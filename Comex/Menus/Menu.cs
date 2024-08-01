@@ -2,12 +2,12 @@
 
 namespace Comex.Menus
 {
-    internal class Menu
+    internal abstract class Menu
     {
 
         public virtual void Executar(Dictionary<string, Produto> todosProdutos)
         {
-            Console.Clear();
+            
         }
 
         public void ExibirTituloDaOpcao(string titulo)

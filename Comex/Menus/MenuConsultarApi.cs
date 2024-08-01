@@ -1,4 +1,5 @@
-﻿using Comex.Model.Produto;
+﻿using Comex.Filters;
+using Comex.Model.Produto;
 using System.Text.Json;
 
 namespace Comex.Menus;
@@ -6,16 +7,33 @@ namespace Comex.Menus;
 internal class MenuConsultarApi : Menu
 {
     public override async void Executar(Dictionary<string, Produto> todosProdutos)
-    {   
+    {
         try
         {
-            HttpClient cliente = new HttpClient();
-            base.Executar(todosProdutos);
-            string resposta = await cliente.GetStringAsync("https://fakestoreapi.com/products");
+        ExibirTituloDaOpcao("Dados da API");
+        Console.WriteLine("1 - Mostrar todos os produtos ordenados por nome");
+        Console.WriteLine("2 - Mostrar todos os produtos ordenados por preço");
 
-            var produtos = JsonSerializer.Deserialize<List<Produto>>(resposta)!;
+        Console.WriteLine("\nDigite a opção desejada: ");
+        string opcaoEscolhida = Console.ReadLine()!;
+        int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
 
-            produtos[0].DetalharProduto();
+        switch(opcaoEscolhidaNumerica)
+            {     
+                case 1:
+                        await Task.FromResult(FiltrosApiExterna.ProdutosPorTitulo());
+                        Thread.Sleep(3000);
+                    break;
+
+                case 2:
+                    await Task.FromResult(FiltrosApiExterna.ProdutosPorPreco());
+                    Thread.Sleep(3000);
+                    break;
+
+                default:
+                    Console.WriteLine("Opção inválida!");
+                    break;
+            }
             EncerrarJanela();
         }
         catch (Exception exception)
