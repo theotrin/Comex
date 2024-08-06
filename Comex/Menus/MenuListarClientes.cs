@@ -4,24 +4,24 @@ namespace Comex.Menus;
 
 internal class MenuListarClientes : Menu
 {
-    public MenuListarClientes(List<Cliente> clientes)
+    public MenuListarClientes(Dictionary<string, Cliente> clientes)
     {
         Clientes = clientes;
     }
 
-    public List<Cliente> Clientes { get; set; }
+    public Dictionary<string, Cliente> Clientes { get; set; }
 
 
-    public override void Executar(Dictionary<string, Produto> todosProdutos)
+    public override async Task Executar(Dictionary<string, Produto> todosProdutos)
     {
         base.Executar(todosProdutos);
         ExibirTituloDaOpcao("Todos os clientes");
 
-        var clientesOrdenadosPorNome = Clientes.OrderBy(cliente => cliente.Nome);
+        var clientesOrdenadosPorNome = Clientes.OrderBy(cliente => cliente.Value.Nome);
 
         foreach(var cliente in clientesOrdenadosPorNome)
         {
-            cliente.ApresentarCliente();
+            cliente.Value.ApresentarCliente();
         }
         EncerrarJanela();
     }

@@ -3,7 +3,7 @@ using Comex.Model.Produto;
 
 internal class MenuCadastrarProduto : Menu
 {
-    public override async void Executar(Dictionary<string, Produto> todosProdutos)
+    public override async Task Executar(Dictionary<string, Produto> todosProdutos)
     {
         base.Executar(todosProdutos);
 

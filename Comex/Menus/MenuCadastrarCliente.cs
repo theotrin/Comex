@@ -4,14 +4,14 @@ namespace Comex.Menus;
 
 internal class MenuCadastrarCliente : Menu
 {
-    public MenuCadastrarCliente(List<Cliente> todosClientes)
+    public MenuCadastrarCliente(Dictionary<string, Cliente> todosClientes)
     {
         Clientes = todosClientes;
     }
 
-    public List<Cliente> Clientes { get; set; }
+    public Dictionary<string, Cliente> Clientes { get; set; }
 
-    public override void Executar(Dictionary<string, Produto> todosProdutos)
+    public override async Task Executar(Dictionary<string, Produto> todosProdutos)
     {
         Console.Clear();
         ExibirTituloDaOpcao("Cadastrar novo cliente!");
@@ -30,7 +30,7 @@ internal class MenuCadastrarCliente : Menu
 
         Cliente cliente = new(nome,cpf,email, telefone);
 
-        Clientes.Add(cliente);
+        Clientes.Add(nome,cliente);
 
         Console.WriteLine($"Cliente: {nome} cadastrado com sucesso!");
 

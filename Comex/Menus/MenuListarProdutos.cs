@@ -2,7 +2,7 @@
 using Comex.Model.Produto;
 internal class MenuListarProdutos : Menu
 {
-    public override async void Executar(Dictionary<string, Produto> todosProdutos)
+    public override async Task Executar(Dictionary<string, Produto> todosProdutos)
     {
         base.Executar(todosProdutos);
 

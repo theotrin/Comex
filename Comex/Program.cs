@@ -10,9 +10,11 @@ produtos.Add("Salada", new Produto("Salada", "Salada verde", 3, 50));
 
 //Endereco endereco = new Endereco("Centro", "Curitiba", "Predio azul", "Paraná", "7 de Setembro", 1);
 
-List<Cliente> clientes = new();
-clientes.Add(new Cliente("Theo", "08134512356", "theo@gmail.com","9299999999"));
-clientes.Add(new Cliente("Jeff", "08136272823", "jeffbezos@amazon.com","3499999999"));
+Dictionary<string,Cliente> clientes = new();
+clientes.Add("Theo",new Cliente("Theo", "08134512356", "theo@gmail.com","9299999999"));
+clientes.Add("Jeff", new Cliente("Jeff", "08136272823", "jeffbezos@amazon.com","3499999999"));
+
+List<Pedido> pedidos = new();
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuCadastrarProduto());
@@ -20,6 +22,8 @@ opcoes.Add(2, new MenuListarProdutos());
 opcoes.Add(3, new MenuConsultarApi());
 opcoes.Add(4, new MenuCadastrarCliente(clientes));
 opcoes.Add(5, new MenuListarClientes(clientes));
+opcoes.Add(6, new MenuCadastrarPedido(clientes, pedidos));
+opcoes.Add(7, new MenuListarPedidos(pedidos));
 opcoes.Add(0, new MenuEncerrar());
 
 
@@ -39,7 +43,8 @@ async Task ExibirMenu()
     Console.WriteLine("3 Consultar API");
     Console.WriteLine("4 Cadastrar novo cliente");
     Console.WriteLine("5 Listar clientes");
-    Console.WriteLine("5 Criar um pedido");
+    Console.WriteLine("6 Criar um pedido");
+    Console.WriteLine("7 Listar pedidos");
     Console.WriteLine("0 Encerrar o programa");
     Console.Write("\nEscolha uma opção: ");
 

@@ -5,7 +5,7 @@ namespace Comex.Menus
     internal abstract class Menu
     {
 
-        public virtual void Executar(Dictionary<string, Produto> todosProdutos)
+        public virtual async Task Executar(Dictionary<string, Produto> todosProdutos)
         {
             
         }
