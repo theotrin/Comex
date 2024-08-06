@@ -2,13 +2,12 @@
 
 class Cliente : IIdenficavel
 {
-    public Cliente(string nome, string cpf, string email, string telefone, Endereco endereco)
+    public Cliente(string nome, string cpf, string email, string telefone)
     {
         Nome = nome;
         Cpf = cpf;
         Email = email;
         Telefone = telefone;
-        Endereco = endereco;
     }
 
     public string Nome { get; set; }
@@ -24,7 +23,6 @@ class Cliente : IIdenficavel
 
         Console.WriteLine($"Nome: {Nome}.\nCPF: {Cpf}.\nEmail: {Email}.\n" +
             $"Profissão: {Profissao}.\nTelefone: {Telefone}.\n");
-        Endereco.MostrarEndereco();
     }
 
     public string Identificar()

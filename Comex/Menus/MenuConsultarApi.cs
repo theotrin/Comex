@@ -1,6 +1,5 @@
 ﻿using Comex.Filters;
 using Comex.Model.Produto;
-using System.Text.Json;
 
 namespace Comex.Menus;
 
@@ -21,8 +20,8 @@ internal class MenuConsultarApi : Menu
         switch(opcaoEscolhidaNumerica)
             {     
                 case 1:
-                        await Task.FromResult(FiltrosApiExterna.ProdutosPorTitulo());
-                        Thread.Sleep(3000);
+                    await Task.FromResult(FiltrosApiExterna.ProdutosPorTitulo());
+                    Thread.Sleep(3000);
                     break;
 
                 case 2:

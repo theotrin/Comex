@@ -1,5 +1,12 @@
 ﻿class Endereco
 {
+    private Endereco endereco;
+
+    public Endereco(Endereco endereco)
+    {
+        this.endereco = endereco;
+    }
+
     public Endereco(string bairro, string cidade, string complemento, string estado, string rua, int numero)
     {
         Bairro = bairro;
