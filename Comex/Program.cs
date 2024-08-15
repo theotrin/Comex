@@ -1,81 +1,46 @@
-﻿string greetings = "Bem vindo ao Comex!\n";
-List<string> produtos = new List<string>(); 
+﻿using Comex.Models;
 
-void ExibirMenu()
-{
-    Console.WriteLine(@"
-░█████╗░░█████╗░███╗░░░███╗███████╗██╗░░██╗
-██╔══██╗██╔══██╗████╗░████║██╔════╝╚██╗██╔╝
-██║░░╚═╝██║░░██║██╔████╔██║█████╗░░░╚███╔╝░
-██║░░██╗██║░░██║██║╚██╔╝██║██╔══╝░░░██╔██╗░
-╚█████╔╝╚█████╔╝██║░╚═╝░██║███████╗██╔╝╚██╗
-░╚════╝░░╚════╝░╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚═╝");
-    Console.WriteLine(greetings);
+var livro1 = new Livro { Titulo = "O Senhor dos Anéis" };
+var livro2 = new Livro { Titulo = "Harry Potter e a Pedra Filosofal" };
+var livro3 = new Livro { Titulo = "O Hobbit" };
+var livro4 = new Livro { Titulo = "1984" };
 
-    Console.WriteLine("1 Criar Produto");
-    Console.WriteLine("2 Listar Produtos");
-    Console.WriteLine("0 Encerrar o programa");
-    Console.Write("\nEscolha uma opção: ");
-    int opcao = int.Parse(Console.ReadLine()!);
+// Adicionar livros a uma lista de livros disponíveis
+var livros = new List<Livro> { livro1, livro2, livro3, livro4 };
 
-    switch (opcao)
-    {
-        case 1: CadastrarProduto();
-            break;
-        case 2: ListarProdutos();
-            break; 
-        case 0: Console.WriteLine("\nPrograma feito por: Theo Trindade :D, thau thau");
-            break;
-        default: 
-            Console.WriteLine("Opção inválida! tente novamente");
-            Thread.Sleep(3000);
-            Console.Clear();
-            ExibirMenu();
-            break;
+// Criar alguns usuários
+var usuario1 = new Usuario { Nome = "Alice", CPF = "12345678900" };
+var usuario2 = new Usuario { Nome = "Bob", CPF = "09876543211" };
 
-    }
-}
-void ExibirTituloDaOpcao(string titulo)
-{
-    int quantidadeDeLetras = titulo.Length;
-    string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
+// Adicionar usuários a uma lista de usuários
+var usuarios = new List<Usuario> { usuario1, usuario2 };
 
-    Console.WriteLine(asteriscos);
-    Console.WriteLine(titulo);
-    Console.WriteLine(asteriscos + "\n");
-}
+// Adicionar livros à lista de livros disponíveis (simulando a adição ao sistema)
+livros.ForEach(l => Console.WriteLine($"Livro adicionado: {l.Titulo}"));
 
-void CadastrarProduto()
-{
-    Console.Clear();
-    ExibirTituloDaOpcao("Cadastrar novo produto");
+// Registrar usuários
+usuarios.ForEach(u => Console.WriteLine($"Usuário registrado: {u.Nome}"));
 
-    Console.Write("\nDigite o nome do novo produto: ");
-    string novoProduto = Console.ReadLine()!;
-    Console.WriteLine($"\nO produto: {novoProduto} cadastrado com sucesso!");
-    produtos.Add(novoProduto);
+// Emprestar livros
+usuario1.EmprestarLivro(livro1);
+usuario1.EmprestarLivro(livro2);
+usuario2.EmprestarLivro(livro3); 
+usuario2.EmprestarLivro(livro4);
 
-    Console.WriteLine("Aperte qualquer tecla para voltar ao menu principal...");
-    Console.ReadKey();
-    Console.Clear();
-    ExibirMenu();
-}
+// Mostrar histórico de empréstimos do usuário1
+Console.WriteLine("\nHistórico de Empréstimos do usuário Alice:");
+usuario1.ExibirHistoricoEmprestimos();
 
-void ListarProdutos()
-{
-    Console.Clear();
-    ExibirTituloDaOpcao("Lista de produtos cadastados");
+// Devolver livro
+usuario1.DevolverLivro(livro1);
 
-    foreach (var produto in produtos)
-    {
-        Console.WriteLine(produto.ToString());
-    }
+// Mostrar histórico de empréstimos do usuário1 após devolução
+Console.WriteLine("\nHistórico de Empréstimos do usuário Alice após devolução:");
+usuario1.ExibirHistoricoEmprestimos();
 
-    Console.WriteLine("\nAperte qualquer tecla para voltar ao menu principal...");
-    Console.ReadKey();
-    Console.Clear();
-    ExibirMenu();
-}
+// Tentar emprestar novamente o livro devolvido
+usuario1.EmprestarLivro(livro1);
 
-ExibirMenu();
-
+// Mostrar histórico de empréstimos do usuário1 após reempréstimo
+Console.WriteLine("\nHistórico de Empréstimos do usuário Alice após reempréstimo:");
+usuario1.ExibirHistoricoEmprestimos();
