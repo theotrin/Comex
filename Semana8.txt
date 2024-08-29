@@ -1,0 +1,133 @@
+Conhecendo o protocolo HTTP
+
+1 O que é HTTP e qual o seu papel na comunicação web?
+ - HTTP é a sigla para Hypertext Transfer Protocol, ou Protocolo de Transferência de Hipertexto. Esse é o principal protocolo responsável pela transferência de dados na Internet, criando as bases necessárias para a conexão entre um cliente e um servidor.
+
+2 Explique a arquitetura do HTTP e os papéis do cliente (navegador) e do servidor (backend).
+ - A arquitetura cliente-servidor funciona da forma em que o cliente faz requisições e o servidor envia requisições.
+
+3 Quais são as camadas da arquitetura da internet e como o HTTP se relaciona com a camada de aplicação?
+ - Camada física: É responsável pela transmissão de dados brutos entre computadores. 
+ - Camada de enlace: É responsável por garantir a confiabilidade da transmissão de dados. 
+ - Camada de rede: É responsável pelo roteamento de dados entre redes. 
+ - Camada de transporte: É responsável pela entrega de dados de forma confiável.
+
+4 O que é um protocolo na comunicação entre dispositivos? Como o HTTP define as regras dessa "conversa"?
+ - Na comunicação entre dispositivos, um protocolo é um conjunto de regras e convenções que define como os dados devem ser formatados, transmitidos e processados. Essas regras garantem que os dispositivos possam entender e interpretar corretamente as mensagens trocadas entre eles.
+ - O HTTP define as regras dessa comunicação através dos métodos HTTP GET,POST,PUT,DELETE e os status code.
+
+5 Cite e explique um protocolo alternativo ao HTTP, como o P2P. Quais são as principais diferenças entre ele e o HTTP?
+- O SPDY é um protocolo de rede desenvolvido pelo Google como uma alternativa ao atual HTTP. Eliminando dados desnecessários e utilizando técnicas de compressão, a tecnologia promete aumentar a velocidade de carregamento dos sites. O SPDY alcança a redução da latência através da compressão, multiplexação e priorização.
+
+
+
+Aprendendo sobre URLs
+
+1 O que é HTTP e qual o seu papel na comunicação web?
+ - Consiste em várias partes: esquema (protocolo), subdomínio, domínio de nível superior (TLD), domínio de segundo nível (SLD) e subdiretório. Esses componentes ajudam a identificar e localizar o conteúdo da web
+
+2 Qual é a diferença entre uma URI e uma URL?
+ - Enquanto URI é um identificador genérico para um recurso, URL é um tipo específico de URI que fornece informações a respeito da localização e do acesso a ele.
+
+3 Qual é a porta padrão usada pelo HTTP e pelo HTTPS? E quais portas estão disponíveis para uso livre?
+ - A porta padrão do HTTP é a 80 e do HTTPS é 443 as portas disponíveis para uso livre são a partir da 3000.
+
+4 Como um endereço IP se transforma em um nome de domínio? Descreva o processo e o papel do DNS.
+ - O DNS é como uma agenda telefônica para a internet. Em vez de lembrar números difíceis (endereços IP), você usa nomes mais fáceis (nomes de domínio).
+ - Funciona da forma em que a URL digitada é transoformada em um endereço IP e acessa o site desejado.
+ - Resumindo, o DNS é como uma agenda que ajuda seu computador a encontrar sites na web. Em vez de lembrar números difíceis, você usa nomes amigáveis, e o DNS faz o trabalho de encontrar o número certo para você. 
+
+5 Por que é importante escolher nomes de URLs que sejam fáceis de entender para qualquer pessoa?
+ - Porque as URLs tem que ser feitas para outros ser humanos lembrarem do endereço.
+
+ 
+ 
+ Inspecionando o protocolo HTTP
+
+1 Qual é o formato das mensagens HTTP e quais são suas principais partes?
+ -As mensagens HTTP são compostas por três partes principais: a linha de status ou de requisição, os cabeçalhos e o corpo da mensagem. A linha de requisição (enviada pelo cliente) ou a linha de status (enviada pelo servidor) informa o método HTTP ou o status da resposta e a versão do protocolo. Os cabeçalhos fornecem detalhes adicionais, como o tipo de conteúdo e o tamanho do corpo. O corpo da mensagem contém os dados reais, como o HTML de uma página web ou os dados enviados em um formulário. Essas partes trabalham juntas para garantir que a comunicação entre o cliente e o servidor seja clara e eficiente.
+
+2 Quais são os principais métodos HTTP e para que cada um deles é utilizado?
+ - GET: usado para fazer requisições e pedir dados.
+ - POST: usado para enviar dados ou criar novos recursos.
+ - PUT: usado para atualizar dados.
+ - DELETE: usado para deletetar dados.
+
+3 O que significa dizer que um servidor HTTP é "stateless"?
+ - Cada solicitação feita a um servidor é tratada de forma independente, sem depender de informações de sessão anteriores.
+
+4 O que são Sessões e Cookies, e como eles ajudam a "lembrar" o servidor?
+ - Sessão é a palavra usada para definir a quantidade de tempo que você passa em um site. Cookies são criados para identificá-lo quando você visita um novo site. O servidor Web que armazena os dados do site – envia um pequeno fluxo de informações de identificação para o seu navegador na forma de cookies.
+
+5 Quais são os significados dos seguintes códigos de status HTTP: 200, 201, 401, 404, 403 e amilia 500?
+ - 2xx indicam sucesso
+ - 4xx geralmente são gerados se uma página tiver sido excluída e não redirecionada, ou algo inserido incorretamente dentro de uma URL ou link.
+ - 5xx erros relacionados a servidor.
+
+
+
+ Protegendo a Web com HTTPS
+
+1 O que é HTTPS e como ele difere do HTTP?
+ - As mensagens HTTP são de texto simples, o que significa que partes não autorizadas podem acessá-las e lê-las facilmente pela Internet. Por outro lado, o HTTPS transmite todos os dados em formato criptografado.
+
+2 Qual é o papel do TLS no funcionamento do HTTPS?
+ - A criptografia TLS ajuda a proteger os aplicativos web de invasões de dados e outros ataques. Hoje, o HTTPS protegido por TLS é uma prática padrão para sites.
+
+3 Como funciona a criptografia assimétrica em transações cliente-servidor usando HTTPS?
+ - Em uma conexão HTTPS:
+ - Chaves Assimétricas: O servidor tem uma chave pública (compartilhada) e uma chave privada (secreta).
+ - Certificado: O servidor envia seu certificado com a chave pública para o navegador.
+ - Troca Segura: O navegador usa a chave pública para enviar uma chave secreta ao servidor. Só o servidor pode desbloquear essa chave secreta com sua chave privada.
+ - Criptografia Simétrica: Após a troca, a comunicação entre o navegador e o servidor usa a chave secreta para criptografar e descriptografar os dados, garantindo a segurança da conversa.
+ - Resumindo, a criptografia assimétrica protege a troca da chave secreta, e a chave secreta é usada para a comunicação segura.
+
+4 O que é criptografia simétrica e como ela se diferencia da criptografia assimétrica?
+ - Criptografia simétrica usa a mesma chave para criptografar e descriptografar dados. É rápida e eficiente, mas a chave precisa ser compartilhada secretamente entre as partes.
+ - Criptografia assimétrica usa um par de chaves: uma chave pública para criptografar os dados e uma chave privada correspondente para descriptografá-los. Isso elimina a necessidade de compartilhar a chave secreta, mas é mais lenta.
+- Em resumo, a criptografia simétrica usa uma chave para tudo, enquanto a criptografia assimétrica usa duas chaves diferentes.
+
+5 Por que a criptografia simétrica é considerada mais rápida que a assimétrica?
+ - a simplicidade dos algoritmos e a menor demanda computacional tornam a criptografia simétrica mais rápida que a criptografia assimétrica.
+
+
+
+ Controlando o HTTP
+
+1 Qual é a diferença principal entre os métodos GET e POST em termos de como os parâmetros são enviados?
+ - GET usa a URL para parâmetros e POST usa o corpo da mensagem.
+
+2 O que são Query Parameters e como eles são usados em uma requisição GET?
+ - Query Parameters: Utilizados na URL para filtrar ou modificar o comportamento da requisição. Por exemplo: /usuarios? idade=25 .
+
+3 Como os dados são transmitidos no corpo de uma requisição POST?
+ - Enviado pelo body geralmente enviado em formato de JSON.
+
+4 Quais são as limitações do uso de parâmetros com o método GET?
+ - Como as informações ficam visíveis na URL, as solicitações GET não são adequadas para transmissão de dados confidenciais, como senhas e informações pessoais.
+
+5 Em que situações é preferível usar POST em vez de GET para enviar dados ao servidor?
+ - Quando precisamos proteger dados como email e senha de um login etc.
+
+ 
+ 
+ 
+ Conhecendo as evoluções do HTTP
+
+1 Quais são as principais melhorias introduzidas pelo HTTP/2 em relação ao HTTP/1.x?
+ -Multiplexação: Permite enviar múltiplas requisições e respostas simultaneamente pela mesma conexão, evitando bloqueios e melhorando a eficiência.
+ -Compressão de Cabeçalhos: Reduz o tamanho dos cabeçalhos HTTP para economizar largura de banda e acelerar a transmissão.
+ -Prioritização de Requisições: Permite que o cliente informe ao servidor a importância das requisições, ajudando a otimizar a ordem em que são processadas.
+ -Transporte Binário: Usa um formato binário para comunicação, em vez de texto, o que melhora a eficiência e a velocidade da transmissão.
+
+2 Como a multiplexação de streams no HTTP/2 melhora a eficiência da comunicação em comparação ao HTTP/1.x?
+- Envio Simultâneo: No HTTP/2, múltiplas requisições e respostas podem ser enviadas simultaneamente pela mesma conexão TCP, sem precisar esperar que uma requisição seja completada antes de começar a próxima. Isso evita o problema de "bloqueio de cabeçalhos" encontrado no HTTP/1.x.
+- Uso Eficiente da Conexão: Ao usar uma única conexão para múltiplos streams, o HTTP/2 reduz o overhead de conexão e melhora a utilização da largura de banda, resultando em um desempenho geral mais rápido.
+
+3 Qual é o papel da compressão de cabeçalhos no HTTP/2 e como isso beneficia a performance das requisições?
+ - A compressão de cabeçalhos no HTTP/2 melhora a performance ao diminuir o tamanho dos cabeçalhos, economizar largura de banda e acelerar o processo de transmissão de dados.
+
+4 Comente sobre o HTTP3 e quais evoluções ele traz.
+ - Em resumo, o HTTP/3 melhora a performance e a segurança das comunicações web ao utilizar o QUIC, reduzindo a latência, suportando multiplexação eficiente e garantindo criptografia integrada.
+ - Uso do QUIC: Ao contrário do HTTP/2, que usa o TCP como transporte, o HTTP/3 utiliza o QUIC (Quick UDP Internet Connections), um protocolo baseado em UDP. O QUIC é projetado para reduzir a latência e melhorar o desempenho, oferecendo uma conexão mais rápida e resiliente.
+ 
